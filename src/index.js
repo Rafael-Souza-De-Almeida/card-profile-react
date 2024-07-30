@@ -2,6 +2,32 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const skills = [
+  {
+    nome: "Java",
+    nivel: "avancado",
+    cor: "orange",
+  },
+
+  {
+    nome: "Spring",
+    nivel: "iniciante",
+    cor: "green",
+  },
+
+  {
+    nome: "Javascript",
+    nivel: "intermediario",
+    cor: "yellow",
+  },
+
+  {
+    nome: "React",
+    nivel: "iniciante",
+    cor: "lightBlue",
+  },
+];
+
 function App() {
   return (
     <div className="card">
@@ -35,19 +61,25 @@ function Introducao() {
 function ListaDeSkills() {
   return (
     <div className="skill-list">
-      <Skills nome="Java" emoji="⭐" color="orange" />
-      <Skills nome="Spring" emoji="💚" color="green" />
-      <Skills nome="React" emoji="🤖" color="blue" />
-      <Skills nome="Javascript" emoji="💻" color="yellow" />
+      {skills.map((skill) => (
+        <Skills
+          nome={skill.nome}
+          nivel={skill.nivel}
+          cor={skill.cor}
+          key={skill.nome}
+        />
+      ))}
     </div>
   );
 }
 
-function Skills(props) {
+function Skills({ nome, nivel, cor }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.nome}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: cor }}>
+      <span>{nome}</span>
+      <span>
+        {nivel === "avancado" ? "💪" : nivel === "iniciante" ? "👶" : "👍"}
+      </span>
     </div>
   );
 }
